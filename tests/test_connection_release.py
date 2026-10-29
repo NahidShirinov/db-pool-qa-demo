@@ -44,7 +44,7 @@ def test_external_api_error_is_not_leaked(monkeypatch, order_id):
 
 
 def test_buggy_endpoint_is_caught(held, order_id):
-    """Proves the check can fail: if this test ever passes with held == [0], the oracle is broken, not the app fixed."""
+    """Proves the check can fail: if this test ever fails with held == [0], the measurement is broken, not the app fixed."""
     with TestClient(demo.app) as client:
         res = client.post(f"/orders/{order_id}/pay-buggy")
     assert res.status_code == 200
